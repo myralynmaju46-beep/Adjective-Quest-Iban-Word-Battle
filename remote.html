@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Adjective Quest: Iban Word Battle</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="sky-bg"></div>
+  <section id="welcomeScreen" class="front-screen">
+    <div class="front-card">
+      <div class="hero-badge">🎒</div>
+      <h1>Adjective Quest</h1>
+      <p>Aram milih : ka macha not tauka bemain!</p>
+      <div class="front-actions">
+        <button id="readNoteBtn" class="action-btn">Not</button>
+        <button id="playGameBtn" class="action-btn secondary">Aram Main</button>
+      </div>
+    </div>
+  </section>
+  <section id="noteScreen" class="front-screen hidden">
+    <div class="front-card">
+      <div class="hero-badge">📝</div>
+      <h1>Not Jaku Adjektif</h1>
+      <p>Bisi tiga kategori Jaku Adjektif dalam Jaku Iban iya nya :</p>
+      <div class="front-note">
+        <div class="note-list">
+          <div class="note-item">
+            <span class="note-icon">📘</span>
+            <div>
+              <strong>Definisyen Jaku Adjektif</strong>
+              <p>Jaku adjektif nya leka jaku ti nerangka gaya, gamal utai, ti konkrit tauka abstrak.</p>
+            </div>
+          </div>
+          <div class="note-item">
+            <span class="note-icon">🍏</span>
+            <div>
+              <strong>Definisyen Jaku Adjektif Asai</strong>
+              <p>Nunjukka utai ti disepi, dipeda, didinga, disium enggau ditegu.</p>
+              <p>Chunto: nyamai, pedis, kelat, pait, manis, masam, pedas, pedar, pang, masin.</p>
+              <p><strong>Peda:</strong> sigat, bajik, sumbung, kamah, lawa, beresi</p>
+              <p><strong>Dinga:</strong> inggar, sunyi, bedegum, temekung, semetak</p>
+              <p><strong>Bau:</strong> but, ampis, angi, angit, kenas, rengut, tengung, kesing</p>
+              <p><strong>Tegu:</strong> alus, kasar, lembut, lichin, tajam, lelepik, angat, chelap, begeru</p>
+            </div>
+          </div>
+          <div class="note-item">
+            <span class="note-icon">🚀</span>
+            <div>
+              <strong>Definisyen Jaku Adjektif Gaya</strong>
+              <p>Nunjukka gaya utai pengawa nuan, cara ngagai orang utai benda.</p>
+              <p>Chunto: manah, laun, berani, pandai, bagas, chundung, pintar, mentas.</p>
+            </div>
+          </div>
+          <div class="note-item">
+            <span class="note-icon">💖</span>
+            <div>
+              <strong>Definisyen Jaku Adjektif Emosyen</strong>
+              <p>Nunjukka emosyen, geregayak ati enggau pengasai ati.</p>
+              <p>Chunto: lelengau, gaga, malu, berai, nyima, merampau, lantang, senang.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button id="backMenuBtn" class="action-btn secondary">Menu</button>
+    </div>
+  </section>
+  <header class="hero-card hidden">
+    <div class="hero-left">
+      <h1>Jaku Adjektif</h1>
+      <p>Adjective Quest: Iban Word Battle</p>
+      <button class="action-btn" id="openWorksheetBtn_header">Latih</button>
+    </div>
+    <div class="hero-right">
+      <div class="score-box">
+        <h2>Score</h2>
+        <div id="totalScore">0</div>
+        <p><strong>Progress</strong></p>
+        <div class="progress-track"><div id="progressBar" class="progress-fill"></div></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-grid hidden">
+    <!-- Interactive sections -->
+    <section class="section-card game-page hidden" id="section2">
+      <div class="section-header">
+        <h2> Aktiviti Klasifikasyen (Drag-and-Drop)</h2>
+        <p>Adar: Klasifikasyenka leka jaku ti diberi ngagai tiga kategori.</p>
+      </div>
+      <div class="drag-game">
+        <div class="draggable-list" id="dragItems">
+          <div class="drag-item" draggable="true" data-word="nyamai">nyamai</div>
+          <div class="drag-item" draggable="true" data-word="masin">masin</div>
+          <div class="drag-item" draggable="true" data-word="manah">manah</div>
+          <div class="drag-item" draggable="true" data-word="masam">masam</div>
+          <div class="drag-item" draggable="true" data-word="lelengau">lelengau</div>
+          <div class="drag-item" draggable="true" data-word="laun">laun</div>
+          <div class="drag-item" draggable="true" data-word="pedas">pedas</div>
+          <div class="drag-item" draggable="true" data-word="gaga">gaga</div>
+          <div class="drag-item" draggable="true" data-word="berani">berani</div>
+        </div>
+        <div class="drop-zones">
+          <div class="drop-zone" data-category="asai">
+            <h3>Jaku Adjektif Asai</h3>
+            
+          </div>
+          <div class="drop-zone" data-category="gaya">
+            <h3>Jaku Adjektif Gaya</h3>
+            
+          </div>
+          <div class="drop-zone" data-category="emosyen">
+            <h3>Jaku Adjektif Emosyen</h3>
+            
+          </div>
+        </div>
+      </div>
+      <div class="page-controls">
+        <button class="action-btn" id="checkDragBtn">Tisih</button>
+        <button class="action-btn secondary page-nav-btn" id="section2PrevBtn">Prev</button>
+        <button class="action-btn secondary page-nav-btn" id="section2MenuBtn">Menu</button>
+        <button class="action-btn page-nav-btn" id="toMatchBtn" disabled>Next</button>
+      </div>
+      <p class="status-text" id="dragStatus"></p>
+    </section>
+
+    <section class="section-card game-page hidden" id="section3">
+      <div class="section-header">
+        <h2>Nipakka Gambar</h2>
+        <p>Tipakka leka jaku enggau gambar ti betul.</p>
+      </div>
+      <div class="match-game" id="matchGame">
+        <div class="match-column" id="matchWords"></div>
+        <div class="match-column" id="matchEmojis"></div>
+      </div>
+      <p class="status-text" id="matchStatus"></p>
+      <div class="page-controls">
+        <button class="action-btn secondary page-nav-btn" id="section3PrevBtn">Prev</button>
+        <button class="action-btn secondary page-nav-btn" id="section3MenuBtn">Menu</button>
+        <button class="action-btn page-nav-btn" id="toQuizBtn" disabled>Next</button>
+      </div>
+    </section>
+
+    <section class="section-card game-page hidden" id="section4">
+      <div class="section-header">
+        <h2>Aktiviti Kuiz Interaktif</h2>
+        <p>Adar: Pilih saut ti betul</p>
+      </div>
+      <div class="quiz-card">
+        <div id="quizContent">
+          <div class="quiz-meta">
+            <span id="quizCounter">Tanya 1 / 18</span>
+            <span id="quizScore">Score: 0</span>
+          </div>
+          <h3 id="quizQuestion">Tekan Start </h3>
+          <div class="choices" id="quizChoices"></div>
+          <div class="quiz-actions">
+            <button class="action-btn" id="nextQuizBtn" disabled>Next</button>
+          </div>
+          <p class="status-text" id="quizFeedback"></p>
+        </div>
+      </div>
+      <div class="page-controls">
+        <button class="action-btn secondary page-nav-btn" id="section4PrevBtn">Prev</button>
+        <button class="action-btn secondary page-nav-btn" id="section4MenuBtn">Menu</button>
+        <button class="action-btn page-nav-btn" id="toSentenceBtn" disabled>Next</button>
+      </div>
+    </section>
+
+    <section class="section-card game-page hidden" id="section5">
+      <div class="section-header">
+        <h2> Aktiviti Ngaga Ayat</h2>
+        <p>Adar: Tulis siti perenggan ti ngundan lima ayat pasal “Pengawa aku ba sekula”. Kena sekurang-kurang: dua Jaku Adjektif Asai, siti Jaku Adjektif Emosyen, dua Jaku Adjektif Gaya.</p>
+      </div>
+      <div class="sentence-builder">
+        <textarea id="sentenceInput" rows="6" placeholder="Tulis perenggan anda di sini..."></textarea>
+        <button class="action-btn" id="checkSentenceBtn">Anjung saut</button>
+        <p class="status-text" id="sentenceStatus"></p>
+      </div>
+      <div class="page-controls">
+        <button class="action-btn secondary page-nav-btn" id="section5PrevBtn">Prev</button>
+        <button class="action-btn secondary page-nav-btn" id="section5MenuBtn">Menu</button>
+        <button class="action-btn page-nav-btn" id="finishBtn" disabled>Udah Tembu / Menu</button>
+      </div>
+    </section>
+
+    <section class="section-card game-page hidden" id="sectionSummary">
+      <div class="section-header">
+        <h2>Mark kepenudi</h2>
+        <p id="summaryMessage">Peda mark nuan ba baruh.</p>
+      </div>
+      <div class="summary-content">
+        <p class="final-score">Mark penuh nuan: <strong id="finalScoreDisplay">0</strong> / 100</p>
+        <p class="summary-text" id="finalSummaryText"></p>
+      </div>
+      <div class="page-controls">
+        <button class="action-btn secondary page-nav-btn" id="summaryMenuBtn">Menu</button>
+      </div>
+    </section>
+
+    <section class="section-card game-page hidden" id="sectionWorksheet">
+      <div class="section-header">
+        <h2>Latih</h2>
+      </div>
+      <div class="worksheet-intro">
+        <p><strong>Nama:</strong> __________________________________________</p>
+        <p><strong>Kelas:</strong> ____________________</p>
+      </div>
+      <div class="worksheet-page" id="worksheetContent">
+        <h3>Pelasar Konsep Jaku Adjektif</h3>
+        <p>Adar: Bacha adar lalu tulis kategori enggau betul. Ngena Jaku ADjektif: Asai, Emosyen, tauka Gaya.</p>
+        <div class="worksheet-table">
+          <div class="worksheet-row">
+            <label>1. nyamai =</label>
+            <input type="text" data-key="q1" placeholder="Asai / Emosyen / Gaya">
+          </div>
+          <div class="worksheet-row">
+            <label>2. gaga =</label>
+            <input type="text" data-key="q2" placeholder="Asai / Emosyen / Gaya">
+          </div>
+          <div class="worksheet-row">
+            <label>3. berani =</label>
+            <input type="text" data-key="q3" placeholder="Asai / Emosyen / Gaya">
+          </div>
+          <div class="worksheet-row">
+            <label>4. manah =</label>
+            <input type="text" data-key="q4" placeholder="Asai / Emosyen / Gaya">
+          </div>
+          <div class="worksheet-row">
+            <label>5. pedas =</label>
+            <input type="text" data-key="q5" placeholder="Asai / Emosyen / Gaya">
+          </div>
+          <div class="worksheet-row">
+            <label>6. lelengau =</label>
+            <input type="text" data-key="q6" placeholder="Asai / Emosyen / Gaya">
+          </div>
+          <div class="worksheet-row">
+            <label>7. laun =</label>
+            <input type="text" data-key="q7" placeholder="Asai / Emosyen / Gaya">
+          </div>
+          <div class="worksheet-row">
+            <label>8. masin =</label>
+            <input type="text" data-key="q8" placeholder="Asai / Emosyen / Gaya">
+          </div>
+        </div>
+
+        <h3>4. Aktiviti Klasifikasi</h3>
+        <p>Adar: Klasifikasyenka jaku ba baruh ngagai tiga kategori.</p>
+        <div class="worksheet-table">
+          <div class="worksheet-row">
+            <label>Perkataan</label>
+            <span>nyamai, gaga, manah, pedas, berani, masam, laun, lelengau</span>
+          </div>
+          <div class="worksheet-row">
+            <label>Asai</label>
+            <input type="text" data-key="q9" placeholder="Isi perkataan Asai">
+          </div>
+          <div class="worksheet-row">
+            <label>Emosyen</label>
+            <input type="text" data-key="q10" placeholder="Isi perkataan Emosyen">
+          </div>
+          <div class="worksheet-row">
+            <label>Gaya</label>
+            <input type="text" data-key="q11" placeholder="Isi perkataan Gaya">
+          </div>
+        </div>
+
+        <h3>Aktiviti Nipakka Gambar</h3>
+        <p>Adar: Bepelasarka gambar, lis jaku adjektif ti engkeman.</p>
+        <div class="worksheet-table">
+          <div class="worksheet-row">
+            <label>Gambar 1</label>
+            <input type="text" data-key="q12" placeholder="(Contoh: berani)">
+          </div>
+          <div class="worksheet-row">
+            <label>Gambar 2</label>
+            <input type="text" data-key="q13" placeholder="(Contoh: gaga)">
+          </div>
+          <div class="worksheet-row">
+            <label>Gambar 3</label>
+            <input type="text" data-key="q14" placeholder="(Contoh: nyamai)">
+          </div>
+          <div class="worksheet-row">
+            <label>Gambar 4</label>
+            <input type="text" data-key="q15" placeholder="(Contoh: pedas)">
+          </div>
+        </div>
+
+        <h3>Saut Betulis</h3>
+        <p>Adar: Saut tanya tu enggau betul.</p>
+        <div class="worksheet-table">
+          <div class="worksheet-row">
+            <label>1. Apai kategoriJaku Adjektif?</label>
+            <input type="text" data-key="q16" placeholder="Saut pandak">
+          </div>
+          <div class="worksheet-row">
+            <label>2. Beri siti chunto Jaku Adjektif Emosyen.</label>
+            <input type="text" data-key="q17" placeholder="Saut pandak">
+          </div>
+          <div class="worksheet-row">
+            <label>3. Bisi dua Jaku Adjektif Gaya.</label>
+            <input type="text" data-key="q18" placeholder="Saut pandak">
+          </div>
+        </div>
+
+        <h3>Aktiviti Ngaga Ayat</h3>
+        <p>Adar: Tulis siti perenggan ti ngundan lima ayat pasal “Pengawa aku ba sekula”. Gunakan dua Jaku Adjektif Asai, sati Jaku Adjektif Emosyen, dua Jaku Adjektif Gaya.</p>
+        <textarea data-key="q19" rows="5" placeholder="Tulis ayat anda di sini..."></textarea>
+      </div>
+      <p class="status-text" id="worksheetStatus"></p>
+      <div class="page-controls">
+        <button class="action-btn" id="checkWorksheetBtn">Tisih saut</button>
+        <button class="action-btn" id="worksheetPrintBtn">Cetak Latih</button>
+        <button class="action-btn secondary page-nav-btn" id="worksheetQuizBtn">Aram main</button>
+        <button class="action-btn secondary page-nav-btn" id="worksheetMenuBtn">Menu</button>
+      </div>
+    </section>
+  </main>
+
+  <div id="confettiContainer"></div>
+  <script src="script.js"></script>
+</body>
+</html>
