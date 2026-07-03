@@ -72,7 +72,7 @@ const quizQuestions = [
   },
   {
     question: '3. Utai ti pemadu beguna dalam Jaku Adjektif iya nya…',
-    choices: ['Jaku ti nerangka asai, gaya tauka emosyen', 'Jaku ti nerangka pengawa', 'Jaku ti nyebut nama orang tauka endur', 'Jaku ti nanya tanya'],
+    choices: ['Jaku ti nerangka nama, gaya tauka emosyen', 'Jaku ti nerangka pengawa', 'Jaku ti nyebut nama orang tauka endur', 'Jaku ti nanya tanya'],
     answer: 'Jaku ti nerangka nama, gaya tauka emosyen'
   },
   {
@@ -155,7 +155,7 @@ const quizQuestions = [
 const matchPairs = [
   { word: 'buah manis', image: '🍎' },
   { word: 'tusah ati', image: '💔' },
-  { word: 'gaga', image: '😨' },
+  { word: 'gaga', image: '😂' },
   { word: 'pedas', image: '🌶️' },
   { word: 'berani', image: '💪' }
 ];
