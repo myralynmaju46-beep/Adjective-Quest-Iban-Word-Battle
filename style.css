@@ -406,11 +406,18 @@ header.hero-card {
   font-weight: 800;
   text-align: center;
   user-select: none;
+  touch-action: manipulation;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .drag-item:active {
   transform: scale(0.98);
+}
+
+.drag-item.selected {
+  outline: 3px solid #ff6b6b;
+  transform: scale(1.02);
+  box-shadow: 0 0 0 4px rgba(255, 107, 166, 0.2);
 }
 
 .drop-zones {
@@ -425,6 +432,20 @@ header.hero-card {
   padding: 18px;
   background: rgba(255,255,255,0.7);
   transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+@media (max-width: 800px) {
+  .drag-game {
+    grid-template-columns: 1fr;
+  }
+
+  .drag-item {
+    padding: 14px 16px;
+  }
+
+  .drop-zone {
+    min-height: 110px;
+  }
 }
 
 .drop-zone.drag-over {

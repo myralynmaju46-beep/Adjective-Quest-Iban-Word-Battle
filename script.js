@@ -58,6 +58,12 @@ let completedSections = new Set();
 let sectionScores = { drag: 0, match: 0, quiz: 0, sentence: 0 };
 let draggedWord = null;
 let matchState = { first: null, second: null, pairs: 0 };
+let touchSelectedWord = null;
+let touchSelectedItem = null;
+
+function isTouchDevice() {
+  return window.matchMedia('(pointer: coarse)').matches || 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+}
 
 const quizQuestions = [
   {
@@ -205,12 +211,65 @@ function addSectionComplete(id) {
   }
 }
 
+function resetSelectedDragItem() {
+  if (touchSelectedItem) {
+    touchSelectedItem.classList.remove('selected');
+  }
+  touchSelectedItem = null;
+  touchSelectedWord = null;
+}
+
+function moveWordToZone(word, zone) {
+  const item = document.querySelector(`.drag-item[data-word="${word}"]`);
+  if (!item) return false;
+  if (zone.querySelector(`[data-word="${word}"]`)) return false;
+  zone.appendChild(item);
+  return true;
+}
+
+function moveWordBackToList(item) {
+  const list = document.querySelector('.draggable-list');
+  if (!list) return;
+  if (list.contains(item)) return;
+  list.appendChild(item);
+}
+
 function initializeDragItems() {
   dragItems.forEach(item => {
     item.addEventListener('dragstart', event => {
       draggedWord = event.target.dataset.word;
       event.dataTransfer.setData('text/plain', draggedWord);
     });
+
+    if (isTouchDevice()) {
+      item.addEventListener('click', event => {
+        event.preventDefault();
+        const itemInZone = item.closest('.drop-zone');
+
+        if (itemInZone) {
+          moveWordBackToList(item);
+          resetSelectedDragItem();
+          dragStatus.textContent = 'Perkataan dipindah semula ke senarai.';
+          dragStatus.style.color = '#5f5f7b';
+          return;
+        }
+
+        if (touchSelectedItem && touchSelectedItem !== item) {
+          touchSelectedItem.classList.remove('selected');
+        }
+
+        if (touchSelectedItem === item) {
+          resetSelectedDragItem();
+          return;
+        }
+
+        touchSelectedItem = item;
+        touchSelectedWord = item.dataset.word;
+        item.classList.add('selected');
+        dragStatus.textContent = 'Tekan kotak kategori untuk letak perkataan.';
+        dragStatus.style.color = '#2f6fb7';
+      });
+    }
   });
 
   dropZones.forEach(zone => {
@@ -230,6 +289,18 @@ function initializeDragItems() {
         zone.appendChild(item);
       }
     });
+
+    if (isTouchDevice()) {
+      zone.addEventListener('click', event => {
+        if (!touchSelectedWord || event.target.closest('.drag-item')) return;
+        if (moveWordToZone(touchSelectedWord, zone)) {
+          const zoneTitle = zone.querySelector('h3');
+          dragStatus.textContent = `Perkataan dimasukkan ke ${zoneTitle ? zoneTitle.textContent : 'kategori'}.`;
+          dragStatus.style.color = '#288b3f';
+        }
+        resetSelectedDragItem();
+      });
+    }
   });
 }
 
